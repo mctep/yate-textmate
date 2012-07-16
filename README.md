@@ -1,7 +1,7 @@
 yate-textmate
 =============
 
-A textmate bundle for the Yate language
+A textmate bundle for the <a href="https://github.com/pasaran/yate">Yate</a> language
 
 <b>Installing:</b>
 <pre>
