@@ -1,0 +1,123 @@
+{	"name": "Yate",
+	"scopeName": "text.yate",
+	"fileTypes": ["yate"],
+	"patterns": [{
+		"match": "//.*",
+		"name": "comment.line.double-slash"
+	},{
+		"begin": "{",
+		"patterns": [
+		{	"include": "$self" },
+		{	"include": "#attrs" },
+		{	"include": "#string-in-html"},
+		{	"include": "#entities"},
+		{  	"name": "constant.numeric",
+		   	"match": "\\d"
+		},
+		{
+			"name": "entity.name.tag",
+			"match": "(=|!|>|<|\\+|\\*|\/)"
+		},
+		{
+			"begin": "[ \t{]*(?=<[^>]*>)",
+			"end": "((?>=</[^>]*)>)?($|})",
+			"patterns": [
+			{	"include": "#tag"},
+			{	"include": "#yate-val"},
+			{
+				"match": "[^{}<>]*",
+				"name": "string"
+			}]
+		}],
+		"end": "}"
+	},
+	{	"include": "#match" },
+	{	"include": "#func" }
+	],
+
+	"repository": {
+		"jpath": {
+			"match": "((\\.|\/)([a-zA-Z0-9-_$])*)",
+			"name": "string"
+		},
+		"match": {
+			"begin": "(match)",
+			"beginCaptures": {
+				"0": { "name": "support.class"}
+			},
+			"end": ".(?={)",
+			"patterns": [{
+				"include": "#jpath"
+			}]
+		},
+		"func": {
+			"begin": "\\b(func)\\b([^.]*)?(?=\\()",
+			"end": ".(?={)",
+			"beginCaptures": {
+				"1": { "name": "support.class" },
+				"2": { "name": "entity.name.function" }
+			},
+			"patterns": [
+				{ "match": "\\bnodeset\\b", "name": "constant.numeric" }
+			]
+		},
+		"entities": {
+			"match": "\\b(if|else|apply)\\b",
+			"name": "entity.name.tag"
+		},
+		"attrs": {
+			"begin": "^[ \t]*(@[a-zA-Z]*)",
+			"end": "$",
+			"beginCaptures": {
+				"0": { "name": "entity.other.attribute-name.html" }
+			},
+			"patterns": [{
+				"include": "#jpath"
+			}]
+		},
+		"string-in-html": {
+			"begin": "(\"|')",
+			"end": "(\"|') *(?=($|}))",
+			"beginCaptures": { "0": { "name": "string" } },
+			"endCaptures": { "0": { "name": "string" } },
+			"name": "string",
+			"patterns": [
+				{ "include": "#yate-val" }
+			]
+		},
+		"tag": {
+			"begin": "<",
+			"end": ">",
+			"patterns": [{
+				"match": "((?<=<)[^=>\"'=/]*?(?=( |>)))",
+				"comment": "begin tag name",
+				"name": "entity.name.tag"
+			}, {
+				"match": "((?<=</)[^=>\"'=/]*?(?=>))",
+				"comment": "end tag name",
+				"name": "entity.name.tag"
+			}, {
+				"begin": "(?<==)(\"|')",
+				"end": "(\"|')",
+				"beginCaptures": { "0": { "name": "string" }},
+				"endCaptures": { "0": { "name": "string" }},
+				"patterns": [{
+					"include": "#yate-val"
+				},{
+					"match": "[^\"']*?",
+					"name": "string"
+				}]
+			}, {
+				"match": " [^'\" =><]*",
+				"name": "entity.other.attribute-name.html"
+			}]
+		},
+		"yate-val": {
+			"begin": "{",
+			"end": "}",
+			"name": "constant.numeric"
+		}
+	},
+
+	"uuid": "fa6fe8fe-4c7b-419a-9554-b0bc923cae37"
+}
