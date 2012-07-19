@@ -5,6 +5,10 @@
 		"match": "//.*",
 		"name": "comment.line.double-slash"
 	},{
+		"begin": "/\\*",
+		"end": "\\*/",
+		"name": "comment.block"
+	},{
 		"begin": "{",
 		"patterns": [
 		{	"include": "$self" },
