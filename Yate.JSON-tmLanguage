@@ -63,7 +63,8 @@
 			"begin": "^(\\s|\\t)*(?=<)",
 			"end": "$",
 			"patterns": [
-				{ "include": "#html-definition" }
+				{ "include": "#html-definition" },
+				{ "include": "#yate-inline-strings" }
 			]
 		},
 		"html-definition": {
