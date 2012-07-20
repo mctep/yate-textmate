@@ -114,7 +114,8 @@
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
 				{ "include": "#inline-expression" },
-				{ "match": "([^\"'{}])*", "name": "string" }
+				{ "match": "([^\"'{}])*", "name": "string" },
+				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
 			]
 		},
 		"yate-inline-strings": {
@@ -123,7 +124,8 @@
 			"end": "(?=<)",
 			"patterns": [
 				{ "include": "#inline-expression" },
-				{ "match": "([^\"'<>])*", "name": "string" }
+				{ "match": "([^\"'<>{}])*", "name": "string" },
+				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
 			]
 		},
 		"yate-attributes": {

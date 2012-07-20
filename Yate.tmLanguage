@@ -370,7 +370,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([^"'&lt;&gt;])*</string>
+					<string>([^"'&lt;&gt;{}])*</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\{\{|\}\})</string>
 					<key>name</key>
 					<string>string</string>
 				</dict>
@@ -409,6 +415,12 @@
 				<dict>
 					<key>match</key>
 					<string>([^"'{}])*</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\{\{|\}\})</string>
 					<key>name</key>
 					<string>string</string>
 				</dict>
