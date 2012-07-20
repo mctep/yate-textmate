@@ -24,11 +24,15 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#html-definition</string>
+			<string>#inline-comments</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#yate-inline-strings</string>
+			<string>#strings</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#html</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -43,9 +47,32 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#html-definition</string>
+					<string>$self</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-inline-strings</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#controls</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
 				</dict>
 			</array>
+		</dict>
+		<key>controls</key>
+		<dict>
+			<key>match</key>
+			<string>\b(if|for)\b</string>
+			<key>name</key>
+			<string>keyword.controls</string>
 		</dict>
 		<key>func</key>
 		<dict>
@@ -101,9 +128,23 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>=</string>
+					<string>(?:\b|\s|\t)=(?:\b|\s|\t)</string>
 					<key>name</key>
 					<string>keyword.operator</string>
+				</dict>
+			</array>
+		</dict>
+		<key>html</key>
+		<dict>
+			<key>begin</key>
+			<string>^(\s|\t)*(?=&lt;)</string>
+			<key>end</key>
+			<string>$</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#html-definition</string>
 				</dict>
 			</array>
 		</dict>
@@ -135,11 +176,6 @@
 			<string>(&lt;/?)\s*([-_a-zA-Z0-9]+)</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.tag.begin.html</string>
-				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
@@ -165,6 +201,15 @@
 					<string>#html-attributes</string>
 				</dict>
 			</array>
+		</dict>
+		<key>inline-comments</key>
+		<dict>
+			<key>begin</key>
+			<string>//</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>comment.line.double-slash</string>
 		</dict>
 		<key>inline-expression</key>
 		<dict>
@@ -210,12 +255,12 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.class</string>
+					<string>storage.type</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>string</string>
+					<string>variable.parameter</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -226,7 +271,7 @@
 		<key>operators</key>
 		<dict>
 			<key>match</key>
-			<string>\b(=|!=|/|\+|%)\b</string>
+			<string>((?&lt;=\s|\t|\))(&amp;&amp;|\|\|)(?=\s|\t|\())|((=|!=|==|!==|===|!|/|\+|%|&gt;|&lt;|&gt;=|&lt;=))</string>
 			<key>name</key>
 			<string>keyword.operator</string>
 		</dict>
@@ -248,14 +293,14 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>include</key>
+					<string>#inline-expression</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>[^{}"'&lt;&gt;]*</string>
 					<key>name</key>
 					<string>string</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#inline-expression</string>
 				</dict>
 			</array>
 		</dict>

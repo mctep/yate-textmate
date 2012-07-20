@@ -5,8 +5,9 @@
 		{ "include": "#block-definition" }
 	,	{ "include": "#match" }
 	,	{ "include": "#func" }
-	,	{ "include": "#html-definition" }
-	,	{ "include": "#yate-inline-strings" }
+	,	{ "include": "#inline-comments"}
+	,	{ "include": "#strings"}
+	,	{ "include": "#html" }
 	],
 
 	"repository": {
@@ -14,15 +15,19 @@
 			"begin": "{",
 			"end": "}",
 			"patterns": [
-				{ "include": "#html-definition" }
+				{ "include": "$self" }
+			,	{ "include": "#operators" }
+			,	{ "include": "#yate-inline-strings" }
+			,	{ "include": "#controls" }
+			,	{ "include": "#inline-comments"}
 			]
 		},
 		"match": {
 			"name": "source.yate.match",
 			"begin": "^(?:\\s|\\t)*(match)(?:\\t|\\s)*(/?(\\.|[a-zA-Z0-9_-]|\\$)*){0,1}",
 			"beginCaptures": {
-				"1": { "name": "support.class" },
-				"2": { "name": "string" }
+				"1": { "name": "storage.type" },
+				"2": { "name": "variable.parameter" }
 			},
 			"end": "(?={)"
 		},
@@ -51,7 +56,14 @@
 			"patterns": [
 				{ "match": "(nodeset)\\b", "name": "constant.numeric" },
 				{ "include": "#strings" },
-				{ "match": "=", "name": "keyword.operator" }
+				{ "match": "(?:\\b|\\s|\\t)=(?:\\b|\\s|\\t)", "name": "keyword.operator" }
+			]
+		},
+		"html": {
+			"begin": "^(\\s|\\t)*(?=<)",
+			"end": "$",
+			"patterns": [
+				{ "include": "#html-definition" }
 			]
 		},
 		"html-definition": {
@@ -59,7 +71,6 @@
 			"begin": "(</?)\\s*([-_a-zA-Z0-9]+)",
 			"end": "(/?>)",
 			"beginCaptures": {
-				"1": { "name": "punctuation.definition.tag.begin.html" },
 				"2": { "name": "entity.name.tag.block.any.html" }
 			},
 			"endCaptures": { "1": { "name": "punctuation.definition.tag.end.html" } },
@@ -95,9 +106,8 @@
 			"begin": "(?<=>)(?![^>]*$)",
 			"end": "(?=<)",
 			"patterns": [
-				{ "match": "[^{}\"'<>]*", "name": "string" },
-				{ "include": "#inline-expression" }
-				
+				{ "include": "#inline-expression" },
+				{ "match": "[^{}\"'<>]*", "name": "string" }
 			]
 		},
 		"inline-expression": {
@@ -111,12 +121,21 @@
 			]
 		},
 		"operators": {
-			"match": "\\b(=|!=|/|\\+|%)\\b",
+			"match": "((?<=\\s|\\t|\\))(&&|\\|\\|)(?=\\s|\\t|\\())|((=|!=|==|!==|===|!|/|\\+|%|>|<|>=|<=))",
 			"name": "keyword.operator"
 		},
 		"strings": {
 			"match": "(\"|')([^\"']*)(\"|')",
 			"name": "string"
+		},
+		"controls": {
+			"match": "\\b(if|for)\\b",
+			"name": "keyword.controls"	
+		},
+		"inline-comments": {
+			"begin": "//",
+			"end": "$",
+			"name": "comment.line.double-slash"
 		}
 	},
 
