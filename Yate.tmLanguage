@@ -12,7 +12,7 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#template-definition</string>
+			<string>#block-definition</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -33,10 +33,24 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>block-definition</key>
+		<dict>
+			<key>begin</key>
+			<string>{</string>
+			<key>end</key>
+			<string>}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#html-definition</string>
+				</dict>
+			</array>
+		</dict>
 		<key>func</key>
 		<dict>
 			<key>begin</key>
-			<string>^(?:\s|	)*(func)(?=(	|\s))</string>
+			<string>^(?:\s|	)*(func)(?:	|\s)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -52,10 +66,44 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string></string>
+					<key>include</key>
+					<string>#func-definition</string>
+				</dict>
+			</array>
+		</dict>
+		<key>func-definition</key>
+		<dict>
+			<key>begin</key>
+			<string>(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))\(</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
 					<key>name</key>
-					<string>string</string>
+					<string>entity.name.function.js</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>source.yate.func.def</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(nodeset)\b</string>
+					<key>name</key>
+					<string>constant.numeric</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#strings</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>=</string>
+					<key>name</key>
+					<string>keyword.operator</string>
 				</dict>
 			</array>
 		</dict>
@@ -174,23 +222,20 @@
 			<string>(?={)</string>
 			<key>name</key>
 			<string>source.yate.match</string>
-			<key>patterns</key>
-			<array>
-			</array>
 		</dict>
-		<key>template-definition</key>
+		<key>operators</key>
 		<dict>
-			<key>begin</key>
-			<string>{</string>
-			<key>end</key>
-			<string>}</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#html-definition</string>
-				</dict>
-			</array>
+			<key>match</key>
+			<string>\b(=|!=|/|\+|%)\b</string>
+			<key>name</key>
+			<string>keyword.operator</string>
+		</dict>
+		<key>strings</key>
+		<dict>
+			<key>match</key>
+			<string>("|')([^"']*)("|')</string>
+			<key>name</key>
+			<string>string</string>
 		</dict>
 		<key>yate-inline-strings</key>
 		<dict>
