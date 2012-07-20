@@ -5,9 +5,11 @@
 		{ "include": "#block-definition" }
 	,	{ "include": "#match" }
 	,	{ "include": "#func" }
+	,	{ "include": "#jpath" }
 	,	{ "include": "#inline-comments"}
-	,	{ "include": "#strings"}
+	,	{ "include": "#yate-strings"}
 	,	{ "include": "#html" }
+	,	{ "include": "#operators" }
 	],
 
 	"repository": {
@@ -16,28 +18,40 @@
 			"end": "}",
 			"patterns": [
 				{ "include": "$self" }
+			,	{ "include": "#jpath-operators" }
 			,	{ "include": "#operators" }
 			,	{ "include": "#yate-inline-strings" }
 			,	{ "include": "#controls" }
 			,	{ "include": "#inline-comments"}
+			,	{ "include": "#yate-attributes"}
 			]
 		},
 		"match": {
 			"name": "source.yate.match",
-			"begin": "^(?:\\s|\\t)*(match)(?:\\t|\\s)*(/?(\\.|[a-zA-Z0-9_-]|\\$)*){0,1}",
+			"begin": "^(?:\\s|\\t)*(match)",
 			"beginCaptures": {
 				"1": { "name": "storage.type" },
 				"2": { "name": "variable.parameter" }
 			},
-			"end": "(?={)"
+			"end": "(?={)",
+			"patterns": [
+				{ "include": "#jpath" },
+				{ "include": "#jpath-operators" },
+				{ "include": "#operators" },
+				{ "include": "#yate-strings" }
+			]
+		},
+		"jpath2": {
+			"match": "(?<=(\\t|\\s))(/|(\\.|\\.[a-zA-Z0-9_-]|\\$|\\*)+)(?=(\\t|\\s))",
+			"name": "variable.parameter"
 		},
 		"jpath": {
-			"match": "(?<=(\\t|\\s))(/|(\\.|[a-zA-Z0-9_-]|\\$)+)(?=(\\t|\\s))",
-			"name": "string"
+			"match": "(?<=\\s|\\t|\\[|\\(|[{,])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
+			"name": "variable.parameter"
 		},
 		"func": {
 			"name": "source.yate.func",
-			"begin": "^(?:\\s|\t)*(func)(?:\t|\\s)",
+			"begin": "^(?:\\s|\t)*(func|key)(?:\t|\\s)",
 			"beginCaptures": {
 				"1": { "name": "support.class" }
 			},
@@ -48,7 +62,7 @@
 		},
 		"func-definition": {
 			"name": "source.yate.func.def",
-			"begin": "(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))\\(",
+			"begin": "(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))(\\s|\\t)*\\(",
 			"beginCaptures": {
 				"1": { "name": "entity.name.function.js" }
 			},
@@ -56,7 +70,9 @@
 			"patterns": [
 				{ "match": "(nodeset)\\b", "name": "constant.numeric" },
 				{ "include": "#strings" },
-				{ "match": "(?:\\b|\\s|\\t)=(?:\\b|\\s|\\t)", "name": "keyword.operator" }
+				{ "match": "(?:\\b|\\s|\\t)=(?:\\b|\\s|\\t)", "name": "keyword.operator" },
+				{ "include": "#jpath" },
+				{ "include": "#jpath-operators" }
 			]
 		},
 		"html": {
@@ -97,9 +113,8 @@
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
-				{ "match": "[^{}\"']*", "name": "string" },
-				{ "include": "#inline-expression" }
-				
+				{ "include": "#inline-expression" },
+				{ "match": "([^\"'{}])*", "name": "string" }
 			]
 		},
 		"yate-inline-strings": {
@@ -108,29 +123,37 @@
 			"end": "(?=<)",
 			"patterns": [
 				{ "include": "#inline-expression" },
-				{ "match": "[^{}\"'<>]*", "name": "string" }
+				{ "match": "([^\"'<>])*", "name": "string" }
 			]
+		},
+		"yate-attributes": {
+			"match": "@[a-zA-Z]([a-zA-Z0-9_-]|\\:)*",
+			"name": "entity.other.attribute-name.html"
 		},
 		"inline-expression": {
 			"name": "source.yate.inline-expression",
-			"begin": "({)",
-			"end": "(})",
-			"beginCaptures": { "1": { "name": "constant.numeric"} },
-			"endCaptures": { "1": { "name": "constant.numeric"} },
+			"begin": "(?<!\\{)({)(?!\\{)",
+			"end": "(?<!\\})(})(?!\\})",
+			"beginCaptures": { "0": { "name": "constant.numeric"} },
+			"endCaptures": { "0": { "name": "constant.numeric"} },
 			"patterns": [
-				
+				{ "include": "#jpath" }
 			]
 		},
 		"operators": {
-			"match": "((?<=\\s|\\t|\\))(&&|\\|\\|)(?=\\s|\\t|\\())|((=|!=|==|!==|===|!|/|\\+|%|>|<|>=|<=))",
+			"match": "((?<=\\s|\\t|\\))(&&|\\|\\|)(?=\\s|\\t|\\())|((=|!=|==|!==|===|!|/|\\+|%|>|<|>=|<=|\\[|\\]))",
 			"name": "keyword.operator"
+		},
+		"jpath-operators": {
+			"match": "(\\||\\[|\\])",
+			"name": "constant.numeric"
 		},
 		"strings": {
 			"match": "(\"|')([^\"']*)(\"|')",
 			"name": "string"
 		},
 		"controls": {
-			"match": "\\b(if|for)\\b",
+			"match": "\\b(if|else|elseif|for|apply)\\b",
 			"name": "keyword.controls"	
 		},
 		"inline-comments": {

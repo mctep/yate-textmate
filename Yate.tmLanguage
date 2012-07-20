@@ -24,15 +24,23 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#jpath</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#inline-comments</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#strings</string>
+			<string>#yate-strings</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>#html</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#operators</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -51,6 +59,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#jpath-operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#operators</string>
 				</dict>
 				<dict>
@@ -65,19 +77,23 @@
 					<key>include</key>
 					<string>#inline-comments</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-attributes</string>
+				</dict>
 			</array>
 		</dict>
 		<key>controls</key>
 		<dict>
 			<key>match</key>
-			<string>\b(if|for)\b</string>
+			<string>\b(if|else|elseif|for|apply)\b</string>
 			<key>name</key>
 			<string>keyword.controls</string>
 		</dict>
 		<key>func</key>
 		<dict>
 			<key>begin</key>
-			<string>^(?:\s|	)*(func)(?:	|\s)</string>
+			<string>^(?:\s|	)*(func|key)(?:	|\s)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -101,7 +117,7 @@
 		<key>func-definition</key>
 		<dict>
 			<key>begin</key>
-			<string>(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))\(</string>
+			<string>(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))(\s|\t)*\(</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -131,6 +147,14 @@
 					<string>(?:\b|\s|\t)=(?:\b|\s|\t)</string>
 					<key>name</key>
 					<string>keyword.operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#jpath</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#jpath-operators</string>
 				</dict>
 			</array>
 		</dict>
@@ -218,20 +242,20 @@
 		<key>inline-expression</key>
 		<dict>
 			<key>begin</key>
-			<string>({)</string>
+			<string>(?&lt;!\{)({)(?!\{)</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>1</key>
+				<key>0</key>
 				<dict>
 					<key>name</key>
 					<string>constant.numeric</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(})</string>
+			<string>(?&lt;!\})(})(?!\})</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>1</key>
+				<key>0</key>
 				<dict>
 					<key>name</key>
 					<string>constant.numeric</string>
@@ -241,19 +265,37 @@
 			<string>source.yate.inline-expression</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#jpath</string>
+				</dict>
 			</array>
 		</dict>
 		<key>jpath</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=(\t|\s))(/|(\.|[a-zA-Z0-9_-]|\$)+)(?=(\t|\s))</string>
+			<string>(?&lt;=\s|\t|\[|\(|[{,])(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
 			<key>name</key>
-			<string>string</string>
+			<string>variable.parameter</string>
+		</dict>
+		<key>jpath-operators</key>
+		<dict>
+			<key>match</key>
+			<string>(\||\[|\])</string>
+			<key>name</key>
+			<string>constant.numeric</string>
+		</dict>
+		<key>jpath2</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;=(\t|\s))(/|(\.|\.[a-zA-Z0-9_-]|\$|\*)+)(?=(\t|\s))</string>
+			<key>name</key>
+			<string>variable.parameter</string>
 		</dict>
 		<key>match</key>
 		<dict>
 			<key>begin</key>
-			<string>^(?:\s|\t)*(match)(?:\t|\s)*(/?(\.|[a-zA-Z0-9_-]|\$)*){0,1}</string>
+			<string>^(?:\s|\t)*(match)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -271,11 +313,30 @@
 			<string>(?={)</string>
 			<key>name</key>
 			<string>source.yate.match</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#jpath</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#jpath-operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-strings</string>
+				</dict>
+			</array>
 		</dict>
 		<key>operators</key>
 		<dict>
 			<key>match</key>
-			<string>((?&lt;=\s|\t|\))(&amp;&amp;|\|\|)(?=\s|\t|\())|((=|!=|==|!==|===|!|/|\+|%|&gt;|&lt;|&gt;=|&lt;=))</string>
+			<string>((?&lt;=\s|\t|\))(&amp;&amp;|\|\|)(?=\s|\t|\())|((=|!=|==|!==|===|!|/|\+|%|&gt;|&lt;|&gt;=|&lt;=|\[|\]))</string>
 			<key>name</key>
 			<string>keyword.operator</string>
 		</dict>
@@ -285,6 +346,13 @@
 			<string>("|')([^"']*)("|')</string>
 			<key>name</key>
 			<string>string</string>
+		</dict>
+		<key>yate-attributes</key>
+		<dict>
+			<key>match</key>
+			<string>@[a-zA-Z]([a-zA-Z0-9_-]|\:)*</string>
+			<key>name</key>
+			<string>entity.other.attribute-name.html</string>
 		</dict>
 		<key>yate-inline-strings</key>
 		<dict>
@@ -302,7 +370,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>[^{}"'&lt;&gt;]*</string>
+					<string>([^"'&lt;&gt;])*</string>
 					<key>name</key>
 					<string>string</string>
 				</dict>
@@ -335,14 +403,14 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>[^{}"']*</string>
-					<key>name</key>
-					<string>string</string>
-				</dict>
-				<dict>
 					<key>include</key>
 					<string>#inline-expression</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([^"'{}])*</string>
+					<key>name</key>
+					<string>string</string>
 				</dict>
 			</array>
 		</dict>
