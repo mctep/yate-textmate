@@ -12,95 +12,31 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#main</string>
+			<string>#template-definition</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#match</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#func</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#html-definition</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#yate-inline-strings</string>
 		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>attributes</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>("|')</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>string</string>
-						</dict>
-					</dict>
-					<key>comment</key>
-					<string>Attribute value</string>
-					<key>end</key>
-					<string>(\1)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>string</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#yate-expressions</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>.</string>
-							<key>name</key>
-							<string>string</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>comment</key>
-					<string>Attribute Name</string>
-					<key>match</key>
-					<string>(?&lt;=[^"'])([a-zA-Z0-9-_:]+)(?=(=)?)</string>
-					<key>name</key>
-					<string>entity.other.attribute-name.html</string>
-				</dict>
-			</array>
-		</dict>
-		<key>attrs</key>
-		<dict>
-			<key>begin</key>
-			<string>^[ 	]*(@[a-zA-Z]*)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>entity.other.attribute-name.html</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>$</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#jpath</string>
-				</dict>
-			</array>
-		</dict>
-		<key>entities</key>
-		<dict>
-			<key>match</key>
-			<string>\b(if|else|apply)\b</string>
-			<key>name</key>
-			<string>entity.name.tag</string>
-		</dict>
 		<key>func</key>
 		<dict>
 			<key>begin</key>
-			<string>\b(func)\b([^.]*)?(?=\()</string>
+			<string>^(?:\s|	)*(func)(?=(	|\s))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -108,177 +44,47 @@
 					<key>name</key>
 					<string>support.class</string>
 				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function</string>
-				</dict>
 			</dict>
 			<key>end</key>
-			<string>.(?={)</string>
+			<string>(?={)</string>
+			<key>name</key>
+			<string>source.yate.func</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\bnodeset\b</string>
+					<string></string>
 					<key>name</key>
-					<string>constant.numeric</string>
+					<string>string</string>
 				</dict>
 			</array>
 		</dict>
-		<key>jpath</key>
+		<key>html-attributes</key>
 		<dict>
-			<key>match</key>
-			<string>((\.|/)([a-zA-Z0-9-_$])*)</string>
+			<key>begin</key>
+			<string> </string>
+			<key>end</key>
+			<string>(?=((&gt;|/&gt;)))</string>
 			<key>name</key>
-			<string>string</string>
-		</dict>
-		<key>main</key>
-		<dict>
+			<string>source.yate.html.tag.attribute</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>comment</key>
-					<string>Comment Double Slash</string>
+					<key>include</key>
+					<string>#yate-strings</string>
+				</dict>
+				<dict>
 					<key>match</key>
-					<string>//.*</string>
+					<string>\b[a-zA-Z0-9:_-]+\b</string>
 					<key>name</key>
-					<string>comment.line.double-slash</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>/\*</string>
-					<key>comment</key>
-					<string>Comment Block</string>
-					<key>end</key>
-					<string>\*/</string>
-					<key>name</key>
-					<string>comment.block</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>{</string>
-					<key>comment</key>
-					<string>Declaration Block</string>
-					<key>end</key>
-					<string>}</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#tags</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#attrs</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#entities</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#operators</string>
-						</dict>
-						<dict>
-							<key>match</key>
-							<string>\d</string>
-							<key>name</key>
-							<string>constant.numeric</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#func</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#match</string>
+					<string>entity.other.attribute-name.html</string>
 				</dict>
 			</array>
 		</dict>
-		<key>match</key>
+		<key>html-definition</key>
 		<dict>
 			<key>begin</key>
-			<string>(match)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>support.class</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>.(?={)</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#jpath</string>
-				</dict>
-			</array>
-		</dict>
-		<key>operators</key>
-		<dict>
-			<key>comment</key>
-			<string>Operators</string>
-			<key>match</key>
-			<string>(!|=|&gt;|&lt;|\+|\*|/)</string>
-			<key>name</key>
-			<string>entity.name.tag</string>
-		</dict>
-		<key>string-in-html</key>
-		<dict>
-			<key>begin</key>
-			<string>("|')</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>string</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>("|') *(?=($|}))</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>string</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#yate-val</string>
-				</dict>
-			</array>
-		</dict>
-		<key>tag-stuff</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#attributes</string>
-				</dict>
-			</array>
-		</dict>
-		<key>tags</key>
-		<dict>
-			<key>begin</key>
-			<string>(&lt;)([a-zA-Z0-9:]++)(?=[^&gt;]*)</string>
+			<string>(&lt;/?)\s*([-_a-zA-Z0-9]+)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -289,69 +95,166 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.tag.html</string>
+					<string>entity.name.tag.block.any.html</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?&lt;=&lt;)(/)(\2)(&gt;)</string>
+			<string>(/?&gt;)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.tag.begin.html</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.tag.html</string>
-				</dict>
-				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.tag.end.html</string>
 				</dict>
 			</dict>
+			<key>name</key>
+			<string>source.yate.html.tag</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#tag-stuff</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#tags</string>
+					<string>#html-attributes</string>
 				</dict>
 			</array>
 		</dict>
-		<key>yate-expressions</key>
+		<key>inline-expression</key>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=[^{])\{(?=[^{])</string>
+			<string>({)</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>constant.numeric</string>
 				</dict>
 			</dict>
-			<key>comment</key>
-			<string>Yate expression include</string>
 			<key>end</key>
-			<string>(?&lt;=[^}])\}(?=[^}])</string>
+			<string>(})</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>constant.numeric</string>
 				</dict>
 			</dict>
+			<key>name</key>
+			<string>source.yate.inline-expression</string>
+			<key>patterns</key>
+			<array>
+			</array>
+		</dict>
+		<key>jpath</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;=(\t|\s))(/|(\.|[a-zA-Z0-9_-]|\$)+)(?=(\t|\s))</string>
+			<key>name</key>
+			<string>string</string>
+		</dict>
+		<key>match</key>
+		<dict>
+			<key>begin</key>
+			<string>^(?:\s|\t)*(match)(?:\t|\s)*(/?(\.|[a-zA-Z0-9_-]|\$)*){0,1}</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.class</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?={)</string>
+			<key>name</key>
+			<string>source.yate.match</string>
+			<key>patterns</key>
+			<array>
+			</array>
+		</dict>
+		<key>template-definition</key>
+		<dict>
+			<key>begin</key>
+			<string>{</string>
+			<key>end</key>
+			<string>}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#html-definition</string>
+				</dict>
+			</array>
+		</dict>
+		<key>yate-inline-strings</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=&gt;)(?![^&gt;]*$)</string>
+			<key>end</key>
+			<string>(?=&lt;)</string>
+			<key>name</key>
+			<string>source.yate.inline-string</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>[^{}"'&lt;&gt;]*</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-expression</string>
+				</dict>
+			</array>
+		</dict>
+		<key>yate-strings</key>
+		<dict>
+			<key>begin</key>
+			<string>("|')</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\1)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>source.yate.string</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>[^{}"']*</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-expression</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>text.yate</string>
+	<string>source.yate</string>
 	<key>uuid</key>
 	<string>fa6fe8fe-4c7b-419a-9554-b0bc923cae37</string>
 </dict>
