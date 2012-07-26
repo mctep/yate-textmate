@@ -10,6 +10,7 @@
 	,	{ "include": "#yate-strings"}
 	,	{ "include": "#html" }
 	,	{ "include": "#operators" }
+	,	{ "include": "#numeric" }
 	],
 
 	"repository": {
@@ -41,9 +42,9 @@
 				{ "include": "#yate-strings" }
 			]
 		},
-		"jpath2": {
-			"match": "(?<=(\\t|\\s))(/|(\\.|\\.[a-zA-Z0-9_-]|\\$|\\*)+)(?=(\\t|\\s))",
-			"name": "variable.parameter"
+		"numeric": {
+			"match": "\\b\\d+\\b",
+			"name": "constant.numeric"
 		},
 		"jpath": {
 			"match": "(?<=\\s|\\t|\\[|\\(|[{,])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",

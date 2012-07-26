@@ -42,6 +42,10 @@
 			<key>include</key>
 			<string>#operators</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#numeric</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -285,13 +289,6 @@
 			<key>name</key>
 			<string>constant.numeric</string>
 		</dict>
-		<key>jpath2</key>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;=(\t|\s))(/|(\.|\.[a-zA-Z0-9_-]|\$|\*)+)(?=(\t|\s))</string>
-			<key>name</key>
-			<string>variable.parameter</string>
-		</dict>
 		<key>match</key>
 		<dict>
 			<key>begin</key>
@@ -332,6 +329,13 @@
 					<string>#yate-strings</string>
 				</dict>
 			</array>
+		</dict>
+		<key>numeric</key>
+		<dict>
+			<key>match</key>
+			<string>\b\d+\b</string>
+			<key>name</key>
+			<string>constant.numeric</string>
 		</dict>
 		<key>operators</key>
 		<dict>
