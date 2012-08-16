@@ -1,10 +1,11 @@
-yate-textmate
-=============
+# yate-textmate
 
-A textmate bundle for the <a href="https://github.com/pasaran/yate">Yate</a> language
+A textmate bundle for the [Yate](https://github.com/pasaran/yate) language
 
-<b>Installing:</b>
-<pre>
-$ cd "~/Library/Application Support/Sublime Text 2/Packages"
-$ clone git://github.com/mctep/yate-textmate.git Yate
-</pre>
+
+## Install
+
+``` bash
+$ cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
+$ git clone git://github.com/mctep/yate-textmate.git Yate
+```
