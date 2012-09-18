@@ -20,6 +20,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#include-file</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#func</string>
 		</dict>
 		<dict>
@@ -233,6 +237,13 @@
 					<string>#html-attributes</string>
 				</dict>
 			</array>
+		</dict>
+		<key>include-file</key>
+		<dict>
+			<key>match</key>
+			<string>\binclude\b</string>
+			<key>name</key>
+			<string>support.class</string>
 		</dict>
 		<key>inline-comments</key>
 		<dict>

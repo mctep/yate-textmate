@@ -4,6 +4,7 @@
 	"patterns": [
 		{ "include": "#block-definition" }
 	,	{ "include": "#match" }
+	,	{ "include": "#include-file" }
 	,	{ "include": "#func" }
 	,	{ "include": "#jpath" }
 	,	{ "include": "#inline-comments"}
@@ -49,6 +50,10 @@
 		"jpath": {
 			"match": "(?<=\\s|\\t|\\[|\\(|[{,])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
 			"name": "variable.parameter"
+		},
+		"include-file": {
+			"name": "support.class",
+			"match": "\\binclude\\b"
 		},
 		"func": {
 			"name": "source.yate.func",
