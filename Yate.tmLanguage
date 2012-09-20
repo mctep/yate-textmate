@@ -12,6 +12,10 @@
 	<array>
 		<dict>
 			<key>include</key>
+			<string>#block-comments</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#block-definition</string>
 		</dict>
 		<dict>
@@ -33,10 +37,6 @@
 		<dict>
 			<key>include</key>
 			<string>#inline-comments</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#block-comments</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -76,6 +76,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>$self</string>
 				</dict>
 				<dict>
@@ -97,10 +101,6 @@
 				<dict>
 					<key>include</key>
 					<string>#inline-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#block-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -306,14 +306,7 @@
 		<key>jpath</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
-			<key>name</key>
-			<string>variable.parameter</string>
-		</dict>
-		<key>jpath-match</key>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
+			<string>(?&lt;=\s|\t|\[|\(|[{,!]|/)(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
 			<key>name</key>
 			<string>variable.parameter</string>
 		</dict>

@@ -2,13 +2,13 @@
 	"scopeName": "source.yate",
 	"fileTypes": ["yate"],
 	"patterns": [
-		{ "include": "#block-definition" }
+		{ "include": "#block-comments"}
+	,	{ "include": "#block-definition" }
 	,	{ "include": "#match" }
 	,	{ "include": "#include-file" }
 	,	{ "include": "#func" }
 	,	{ "include": "#jpath" }
 	,	{ "include": "#inline-comments"}
-	,	{ "include": "#block-comments"}
 	,	{ "include": "#yate-strings"}
 	,	{ "include": "#html" }
 	,	{ "include": "#operators" }
@@ -20,13 +20,13 @@
 			"begin": "{",
 			"end": "}",
 			"patterns": [
-				{ "include": "$self" }
+				{ "include": "#block-comments"}
+			,	{ "include": "$self" }
 			,	{ "include": "#jpath-operators" }
 			,	{ "include": "#operators" }
 			,	{ "include": "#yate-inline-strings" }
 			,	{ "include": "#controls" }
 			,	{ "include": "#inline-comments"}
-			,	{ "include": "#block-comments"}
 			,	{ "include": "#yate-attributes"}
 			]
 		},
@@ -49,15 +49,10 @@
 			"match": "\\b\\d+\\b",
 			"name": "constant.numeric"
 		},
-		"jpath-match": {
-			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
-			"name": "variable.parameter"
-		},
 		"jpath": {
-			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
+			"match": "(?<=\\s|\\t|\\[|\\(|[{,!]|\/)(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
 			"name": "variable.parameter"
 		},
-
 		"include-file": {
 			"name": "support.class",
 			"match": "\\binclude\\b"
