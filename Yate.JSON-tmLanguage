@@ -8,6 +8,7 @@
 	,	{ "include": "#func" }
 	,	{ "include": "#jpath" }
 	,	{ "include": "#inline-comments"}
+	,	{ "include": "#block-comments"}
 	,	{ "include": "#yate-strings"}
 	,	{ "include": "#html" }
 	,	{ "include": "#operators" }
@@ -25,6 +26,7 @@
 			,	{ "include": "#yate-inline-strings" }
 			,	{ "include": "#controls" }
 			,	{ "include": "#inline-comments"}
+			,	{ "include": "#block-comments"}
 			,	{ "include": "#yate-attributes"}
 			]
 		},
@@ -37,7 +39,7 @@
 			},
 			"end": "(?={)",
 			"patterns": [
-				{ "include": "#jpath" },
+				{ "include": "#jpath-match" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
 				{ "include": "#yate-strings" }
@@ -47,10 +49,15 @@
 			"match": "\\b\\d+\\b",
 			"name": "constant.numeric"
 		},
-		"jpath": {
+		"jpath-match": {
 			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
 			"name": "variable.parameter"
 		},
+		"jpath": {
+			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
+			"name": "variable.parameter"
+		},
+
 		"include-file": {
 			"name": "support.class",
 			"match": "\\binclude\\b"
@@ -168,6 +175,11 @@
 			"begin": "//",
 			"end": "$",
 			"name": "comment.line.double-slash"
+		},
+		"block-comments": {
+			"begin": "/\\*",
+			"end": "\\*/",
+			"name": "comment.block"
 		}
 	},
 

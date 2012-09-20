@@ -36,6 +36,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#block-comments</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#yate-strings</string>
 		</dict>
 		<dict>
@@ -53,6 +57,15 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>block-comments</key>
+		<dict>
+			<key>begin</key>
+			<string>/\*</string>
+			<key>end</key>
+			<string>\*/</string>
+			<key>name</key>
+			<string>comment.block</string>
+		</dict>
 		<key>block-definition</key>
 		<dict>
 			<key>begin</key>
@@ -84,6 +97,10 @@
 				<dict>
 					<key>include</key>
 					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -289,6 +306,13 @@
 		<key>jpath</key>
 		<dict>
 			<key>match</key>
+			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
+			<key>name</key>
+			<string>variable.parameter</string>
+		</dict>
+		<key>jpath-match</key>
+		<dict>
+			<key>match</key>
 			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
 			<key>name</key>
 			<string>variable.parameter</string>
@@ -325,7 +349,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#jpath</string>
+					<string>#jpath-match</string>
 				</dict>
 				<dict>
 					<key>include</key>
