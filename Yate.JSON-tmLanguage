@@ -39,7 +39,7 @@
 			},
 			"end": "(?={)",
 			"patterns": [
-				{ "include": "#jpath-match" },
+				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
 				{ "include": "#yate-strings" }

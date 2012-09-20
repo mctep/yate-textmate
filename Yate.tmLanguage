@@ -342,7 +342,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#jpath-match</string>
+					<string>#jpath</string>
 				</dict>
 				<dict>
 					<key>include</key>
