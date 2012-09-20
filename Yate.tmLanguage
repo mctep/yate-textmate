@@ -199,6 +199,14 @@
 					<key>include</key>
 					<string>#yate-inline-strings</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 			</array>
 		</dict>
 		<key>html-attributes</key>
@@ -214,6 +222,14 @@
 				<dict>
 					<key>include</key>
 					<string>#yate-strings</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -342,7 +358,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#jpath-match</string>
+					<string>#jpath</string>
 				</dict>
 				<dict>
 					<key>include</key>

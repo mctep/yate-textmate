@@ -39,7 +39,7 @@
 			},
 			"end": "(?={)",
 			"patterns": [
-				{ "include": "#jpath-match" },
+				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
 				{ "include": "#yate-strings" }
@@ -88,7 +88,9 @@
 			"end": "$",
 			"patterns": [
 				{ "include": "#html-definition" },
-				{ "include": "#yate-inline-strings" }
+				{ "include": "#yate-inline-strings" },
+				{ "include": "#block-comments" },
+				{ "include": "#inline-comments" }
 			]
 		},
 		"html-definition": {
@@ -100,7 +102,7 @@
 			},
 			"endCaptures": { "1": { "name": "punctuation.definition.tag.end.html" } },
 			"patterns": [
-				{	"include": "#html-attributes" }
+				{ "include": "#html-attributes" }
 			]
 		},
 		"html-attributes": {
@@ -109,6 +111,8 @@
 			"end": "(?=((>|/>)))",
 			"patterns": [
 				{ "include": "#yate-strings" },
+				{ "include": "#block-comments" },
+				{ "include": "#inline-comments" },
 				{  "name": "entity.other.attribute-name.html",
 				   "match": "\\b[a-zA-Z0-9:_-]+\\b"
 				}
