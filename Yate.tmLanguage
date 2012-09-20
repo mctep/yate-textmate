@@ -306,14 +306,7 @@
 		<key>jpath</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
-			<key>name</key>
-			<string>variable.parameter</string>
-		</dict>
-		<key>jpath-match</key>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;=\s|\t|\[|\(|[{,!])(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
+			<string>(?&lt;=\s|\t|\[|\(|[{,!]|/)(\.|/)(\.|[a-zA-Z0-9_-]|\*|\$)*(?=\s|\t|\[|\]|\)|[,}])</string>
 			<key>name</key>
 			<string>variable.parameter</string>
 		</dict>

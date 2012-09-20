@@ -49,15 +49,10 @@
 			"match": "\\b\\d+\\b",
 			"name": "constant.numeric"
 		},
-		"jpath-match": {
-			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
-			"name": "variable.parameter"
-		},
 		"jpath": {
-			"match": "(?<=\\s|\\t|\\[|\\(|[{,!])(\\.)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
+			"match": "(?<=\\s|\\t|\\[|\\(|[{,!]|\/)(\\.|/)(\\.|[a-zA-Z0-9_-]|\\*|\\$)*(?=\\s|\\t|\\[|\\]|\\)|[,}])",
 			"name": "variable.parameter"
 		},
-
 		"include-file": {
 			"name": "support.class",
 			"match": "\\binclude\\b"
