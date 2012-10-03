@@ -44,6 +44,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#yate-strings-single-quoted</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#html</string>
 		</dict>
 		<dict>
@@ -225,6 +229,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#yate-strings-single-quoted</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#block-comments</string>
 				</dict>
 				<dict>
@@ -317,6 +325,18 @@
 					<key>include</key>
 					<string>#jpath</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#jpath-operators</string>
+				</dict>
 			</array>
 		</dict>
 		<key>jpath</key>
@@ -371,6 +391,10 @@
 				<dict>
 					<key>include</key>
 					<string>#yate-strings</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-strings-single-quoted</string>
 				</dict>
 			</array>
 		</dict>
@@ -433,7 +457,7 @@
 		<key>yate-strings</key>
 		<dict>
 			<key>begin</key>
-			<string>("|')</string>
+			<string>(")</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -462,7 +486,51 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([^"'{}])*</string>
+					<string>([^"{}])*</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\{\{|\}\})</string>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</array>
+		</dict>
+		<key>yate-strings-single-quoted</key>
+		<dict>
+			<key>begin</key>
+			<string>(')</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\1)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>source.yate.string</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#inline-expression</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([^'{}])*</string>
 					<key>name</key>
 					<string>string</string>
 				</dict>
