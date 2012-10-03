@@ -128,7 +128,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.class</string>
+					<string>storage.type</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -284,7 +284,7 @@
 			<key>match</key>
 			<string>\binclude\b</string>
 			<key>name</key>
-			<string>support.class</string>
+			<string>storage.type</string>
 		</dict>
 		<key>inline-comments</key>
 		<dict>
@@ -363,11 +363,6 @@
 				<dict>
 					<key>name</key>
 					<string>storage.type</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter</string>
 				</dict>
 			</dict>
 			<key>end</key>
