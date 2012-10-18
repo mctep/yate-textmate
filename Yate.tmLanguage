@@ -424,9 +424,9 @@
 		<key>yate-inline-strings</key>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=&gt;)(?![^&gt;]*$)</string>
+			<string>(?&lt;=&gt;)(?!\&lt;|$)</string>
 			<key>end</key>
-			<string>(?=&lt;)</string>
+			<string>(?=\&lt;|$)</string>
 			<key>name</key>
 			<string>source.yate.inline-string</string>
 			<key>patterns</key>

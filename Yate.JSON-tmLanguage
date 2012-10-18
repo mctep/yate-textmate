@@ -146,8 +146,8 @@
 		},
 		"yate-inline-strings": {
 			"name": "source.yate.inline-string",
-			"begin": "(?<=>)(?![^>]*$)",
-			"end": "(?=<)",
+			"begin": "(?<=>)(?!\\<|$)",
+			"end": "(?=\\<|$)",
 			"patterns": [
 				{ "include": "#inline-expression" },
 				{ "match": "([^\"'<>{}])*", "name": "string" },
