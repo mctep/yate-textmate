@@ -10,6 +10,7 @@
 	,	{ "include": "#jpath" }
 	,	{ "include": "#inline-comments"}
 	,	{ "include": "#yate-strings"}
+	,	{ "include": "#yate-strings-single-quoted"}
 	,	{ "include": "#html" }
 	,	{ "include": "#operators" }
 	,	{ "include": "#numeric" }
@@ -34,15 +35,15 @@
 			"name": "source.yate.match",
 			"begin": "^(?:\\s|\\t)*(match)",
 			"beginCaptures": {
-				"1": { "name": "storage.type" },
-				"2": { "name": "variable.parameter" }
+				"1": { "name": "storage.type" }
 			},
 			"end": "(?={)",
 			"patterns": [
 				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
-				{ "include": "#yate-strings" }
+				{ "include": "#yate-strings" },
+				{ "include": "#yate-strings-single-quoted"}
 			]
 		},
 		"numeric": {
@@ -54,14 +55,14 @@
 			"name": "variable.parameter"
 		},
 		"include-file": {
-			"name": "support.class",
+			"name": "storage.type",
 			"match": "\\binclude\\b"
 		},
 		"func": {
 			"name": "source.yate.func",
 			"begin": "^(?:\\s|\t)*(func|key)(?:\t|\\s)",
 			"beginCaptures": {
-				"1": { "name": "support.class" }
+				"1": { "name": "storage.type" }
 			},
 			"end": "(?={)",
 			"patterns": [
@@ -111,6 +112,7 @@
 			"end": "(?=((>|/>)))",
 			"patterns": [
 				{ "include": "#yate-strings" },
+				{ "include": "#yate-strings-single-quoted"},
 				{ "include": "#block-comments" },
 				{ "include": "#inline-comments" },
 				{  "name": "entity.other.attribute-name.html",
@@ -120,20 +122,32 @@
 		},
 		"yate-strings": {
 			"name": "source.yate.string",
-			"begin": "(\"|')",
+			"begin": "(\")",
 			"end": "(\\1)",
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
 				{ "include": "#inline-expression" },
-				{ "match": "([^\"'{}])*", "name": "string" },
+				{ "match": "([^\"{}])*", "name": "string" },
+				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
+			]
+		},
+		"yate-strings-single-quoted": {
+			"name": "source.yate.string",
+			"begin": "(')",
+			"end": "(\\1)",
+			"beginCaptures": { "1": { "name": "string"} },
+			"endCaptures": { "1": { "name": "string"} },
+			"patterns": [
+				{ "include": "#inline-expression" },
+				{ "match": "([^'{}])*", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
 			]
 		},
 		"yate-inline-strings": {
 			"name": "source.yate.inline-string",
-			"begin": "(?<=>)(?![^>]*$)",
-			"end": "(?=<)",
+			"begin": "(?<=>)(?!\\<|$)",
+			"end": "(?=\\<|$)",
 			"patterns": [
 				{ "include": "#inline-expression" },
 				{ "match": "([^\"'<>{}])*", "name": "string" },
@@ -151,7 +165,10 @@
 			"beginCaptures": { "0": { "name": "constant.numeric"} },
 			"endCaptures": { "0": { "name": "constant.numeric"} },
 			"patterns": [
-				{ "include": "#jpath" }
+				{ "include": "#jpath" },
+				{ "include": "#operators" },
+				{ "include": "#numeric" },
+				{ "include": "#jpath-operators" }
 			]
 		},
 		"operators": {
