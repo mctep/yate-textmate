@@ -22,8 +22,9 @@
 			"end": "}",
 			"patterns": [
 				{ "include": "#block-comments"}
-			,	{ "include": "$self" }
+			,	{ "include": "#jpath" }
 			,	{ "include": "#jpath-operators" }
+			,	{ "include": "$self" }
 			,	{ "include": "#operators" }
 			,	{ "include": "#yate-inline-strings" }
 			,	{ "include": "#controls" }
@@ -42,6 +43,7 @@
 				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
+				{ "include": "#numeric" },
 				{ "include": "#yate-strings" },
 				{ "include": "#yate-strings-single-quoted"}
 			]
@@ -56,7 +58,7 @@
 		},
 		"include-file": {
 			"name": "storage.type",
-			"match": "\\binclude\\b"
+			"match": "\\b(include|import|module)\\b"
 		},
 		"func": {
 			"name": "source.yate.func",
@@ -166,9 +168,9 @@
 			"endCaptures": { "0": { "name": "constant.numeric"} },
 			"patterns": [
 				{ "include": "#jpath" },
+				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
-				{ "include": "#numeric" },
-				{ "include": "#jpath-operators" }
+				{ "include": "#numeric" }
 			]
 		},
 		"operators": {

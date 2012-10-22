@@ -84,11 +84,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>$self</string>
+					<string>#jpath</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#jpath-operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -282,7 +286,7 @@
 		<key>include-file</key>
 		<dict>
 			<key>match</key>
-			<string>\binclude\b</string>
+			<string>\b(include|import|module)\b</string>
 			<key>name</key>
 			<string>storage.type</string>
 		</dict>
@@ -327,15 +331,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#jpath-operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#operators</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#numeric</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#jpath-operators</string>
 				</dict>
 			</array>
 		</dict>
@@ -382,6 +386,10 @@
 				<dict>
 					<key>include</key>
 					<string>#operators</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#numeric</string>
 				</dict>
 				<dict>
 					<key>include</key>
