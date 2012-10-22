@@ -1,0 +1,8 @@
+{
+    "name": "Symbol List: Templates",
+    "scope": "source.yate source.yate.match, source.yate source.yate.func",
+    "settings": {
+           "showInSymbolList": 1,
+           "symbolTransformation": "s/^(.*)/$1/"
+    }
+}
