@@ -100,10 +100,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#yate-inline-strings</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#controls</string>
 				</dict>
 				<dict>

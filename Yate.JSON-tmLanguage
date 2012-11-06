@@ -26,7 +26,6 @@
 			,	{ "include": "#jpath-operators" }
 			,	{ "include": "$self" }
 			,	{ "include": "#operators" }
-			,	{ "include": "#yate-inline-strings" }
 			,	{ "include": "#controls" }
 			,	{ "include": "#inline-comments"}
 			,	{ "include": "#yate-attributes"}
