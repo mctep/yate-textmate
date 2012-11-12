@@ -1,0 +1,6 @@
+[
+	{ 
+		"keys": ["super+shift+r"],
+		"command": "find_match"
+	}
+]
