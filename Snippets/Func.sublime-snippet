@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[func ${1:name}(${2}) {
+	${0}
+}]]></content>
+	<!-- Optional: Tab trigger to activate the snippet -->
+	<tabTrigger>f</tabTrigger>
+	<!-- Optional: Scope the tab trigger will be active in -->
+	<scope>source.yate</scope>
+	<!-- Optional: Description to show in the menu -->
+	<description>match template</description>
+</snippet>

@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[match ${1:/} {
+	${0}
+}]]></content>
+	<!-- Optional: Tab trigger to activate the snippet -->
+	<tabTrigger>m</tabTrigger>
+	<!-- Optional: Scope the tab trigger will be active in -->
+	<scope>source.yate</scope>
+	<!-- Optional: Description to show in the menu -->
+	<description>match template</description>
+</snippet>
