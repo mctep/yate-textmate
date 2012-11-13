@@ -11,19 +11,25 @@ class FindMatchCommand(sublime_plugin.TextCommand):
 
 			string = self.view.substr(line).strip()
 
-			m = re.search('^apply ((\.|\/)[^ ]*) ?([0-9a-zA-Z_-]+)?', string)
-
+			m = re.search('apply ([\*.\/0-9a-zA-Z_-]+) ?([0-9a-zA-Z_-]+)?', string)
+			print m
 			if not(m is None):
 				jpath = m.group(1)
+
 				if jpath == '.':
 					jpath = ''
+
+				mode = m.group(2)
+				if mode is None:
+					mode = ''
 				else:
-					jpath = jpath + ' '
-				mode = m.group(3)
+					if jpath != '':
+						jpath = jpath + ' '
+
 				self.view.window().run_command('show_overlay', {'overlay': 'goto', 'text': '@%s%s' % (jpath, mode)})
 				return
 
-			f = re.search('^apply (\w+)', string)
+			f = re.search('^apply (\w+)\(', string)
 			if (not f is None):
 				func = f.group(1)
 				self.view.window().run_command('show_overlay', {'overlay': 'goto', 'text': '@%s' % func})
