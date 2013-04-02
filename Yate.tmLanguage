@@ -224,13 +224,21 @@
 		<key>html-attributes</key>
 		<dict>
 			<key>begin</key>
-			<string> </string>
+			<string>(?= )</string>
 			<key>end</key>
 			<string>(?=((&gt;|/&gt;)))</string>
 			<key>name</key>
 			<string>source.yate.html.tag.attribute</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#yate-strings</string>

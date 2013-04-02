@@ -115,9 +115,11 @@
 		},
 		"html-attributes": {
 			"name": "source.yate.html.tag.attribute",
-			"begin": " ",
+			"begin": "(?= )",
 			"end": "(?=((>|/>)))",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#yate-strings" },
 				{ "include": "#yate-strings-single-quoted"},
 				{  "name": "entity.other.attribute-name.html",
