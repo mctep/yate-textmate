@@ -118,8 +118,6 @@
 			"begin": " ",
 			"end": "(?=((>|/>)))",
 			"patterns": [
-				{ "include": "#block-comments"},
-				{ "include": "#inline-comments"},
 				{ "include": "#yate-strings" },
 				{ "include": "#yate-strings-single-quoted"},
 				{  "name": "entity.other.attribute-name.html",
@@ -134,8 +132,6 @@
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
-				{ "include": "#block-comments"},
-				{ "include": "#inline-comments"},
 				{ "include": "#inline-expression" },
 				{ "match": "([^\"{}])*", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
@@ -148,8 +144,6 @@
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
-				{ "include": "#block-comments"},
-				{ "include": "#inline-comments"},
 				{ "include": "#inline-expression" },
 				{ "match": "([^'{}])*", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }

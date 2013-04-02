@@ -233,14 +233,6 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#block-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#inline-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#yate-strings</string>
 				</dict>
 				<dict>
@@ -521,14 +513,6 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#block-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#inline-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#inline-expression</string>
 				</dict>
 				<dict>
@@ -571,14 +555,6 @@
 			<string>source.yate.string</string>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>include</key>
-					<string>#block-comments</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#inline-comments</string>
-				</dict>
 				<dict>
 					<key>include</key>
 					<string>#inline-expression</string>
