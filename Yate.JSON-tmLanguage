@@ -22,12 +22,12 @@
 			"end": "}",
 			"patterns": [
 				{ "include": "#block-comments"}
+			,	{ "include": "#inline-comments"}
 			,	{ "include": "#jpath" }
 			,	{ "include": "#jpath-operators" }
 			,	{ "include": "$self" }
 			,	{ "include": "#operators" }
 			,	{ "include": "#controls" }
-			,	{ "include": "#inline-comments"}
 			,	{ "include": "#yate-attributes"}
 			]
 		},
@@ -39,6 +39,8 @@
 			},
 			"end": "(?={)",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },
@@ -78,6 +80,8 @@
 			},
 			"end": "\\)",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "match": "(nodeset)\\b", "name": "constant.numeric" },
 				{ "include": "#strings" },
 				{ "match": "(?:\\b|\\s|\\t)=(?:\\b|\\s|\\t)", "name": "keyword.operator" },
@@ -89,10 +93,10 @@
 			"begin": "^(\\s|\\t)*(?=<)",
 			"end": "$",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#html-definition" },
-				{ "include": "#yate-inline-strings" },
-				{ "include": "#block-comments" },
-				{ "include": "#inline-comments" }
+				{ "include": "#yate-inline-strings" }
 			]
 		},
 		"html-definition": {
@@ -104,6 +108,8 @@
 			},
 			"endCaptures": { "1": { "name": "punctuation.definition.tag.end.html" } },
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#html-attributes" }
 			]
 		},
@@ -112,10 +118,10 @@
 			"begin": " ",
 			"end": "(?=((>|/>)))",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#yate-strings" },
 				{ "include": "#yate-strings-single-quoted"},
-				{ "include": "#block-comments" },
-				{ "include": "#inline-comments" },
 				{  "name": "entity.other.attribute-name.html",
 				   "match": "\\b[a-zA-Z0-9:_-]+\\b"
 				}
@@ -128,6 +134,8 @@
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#inline-expression" },
 				{ "match": "([^\"{}])*", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
@@ -140,6 +148,8 @@
 			"beginCaptures": { "1": { "name": "string"} },
 			"endCaptures": { "1": { "name": "string"} },
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#inline-expression" },
 				{ "match": "([^'{}])*", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
@@ -150,8 +160,10 @@
 			"begin": "(?<=>)(?!\\<|$)",
 			"end": "(?=\\<|$)",
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#inline-expression" },
-				{ "match": "([^\"'<>{}])*", "name": "string" },
+				{ "match": "([^\"'<>{}/]+)", "name": "string" },
 				{ "match": "(\\{\\{|\\}\\})", "name": "string" }
 			]
 		},
@@ -166,6 +178,8 @@
 			"beginCaptures": { "0": { "name": "constant.numeric"} },
 			"endCaptures": { "0": { "name": "constant.numeric"} },
 			"patterns": [
+				{ "include": "#block-comments"},
+				{ "include": "#inline-comments"},
 				{ "include": "#jpath" },
 				{ "include": "#jpath-operators" },
 				{ "include": "#operators" },

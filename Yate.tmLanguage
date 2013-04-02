@@ -84,6 +84,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#jpath</string>
 				</dict>
 				<dict>
@@ -101,10 +105,6 @@
 				<dict>
 					<key>include</key>
 					<string>#controls</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#inline-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -162,6 +162,14 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>(nodeset)\b</string>
 					<key>name</key>
@@ -197,19 +205,19 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#html-definition</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#yate-inline-strings</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#block-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#html-definition</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-inline-strings</string>
 				</dict>
 			</array>
 		</dict>
@@ -225,19 +233,19 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#yate-strings</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#yate-strings-single-quoted</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#block-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-strings</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#yate-strings-single-quoted</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -273,6 +281,14 @@
 			<string>source.yate.html.tag</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#html-attributes</string>
@@ -323,6 +339,14 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#jpath</string>
 				</dict>
 				<dict>
@@ -371,6 +395,14 @@
 			<string>source.yate.match</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#jpath</string>
@@ -437,11 +469,19 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#inline-expression</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([^"'&lt;&gt;{}])*</string>
+					<string>([^"'&lt;&gt;{}/]+)</string>
 					<key>name</key>
 					<string>string</string>
 				</dict>
@@ -479,6 +519,14 @@
 			<string>source.yate.string</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#inline-expression</string>
@@ -523,6 +571,14 @@
 			<string>source.yate.string</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#block-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#inline-comments</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#inline-expression</string>
