@@ -298,7 +298,7 @@
 		<key>include-file</key>
 		<dict>
 			<key>match</key>
-			<string>\b(include|import|module)\b</string>
+			<string>\b(include|import|module|external)\b</string>
 			<key>name</key>
 			<string>storage.type</string>
 		</dict>

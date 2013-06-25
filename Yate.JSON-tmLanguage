@@ -59,7 +59,7 @@
 		},
 		"include-file": {
 			"name": "storage.type",
-			"match": "\\b(include|import|module)\\b"
+			"match": "\\b(include|import|module|external)\\b"
 		},
 		"func": {
 			"name": "source.yate.func",
@@ -196,7 +196,7 @@
 		},
 		"controls": {
 			"match": "\\b(if|else|elseif|for|apply)\\b",
-			"name": "keyword.controls"	
+			"name": "keyword.controls"
 		},
 		"inline-comments": {
 			"begin": "//",
