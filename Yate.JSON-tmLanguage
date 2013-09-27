@@ -1,5 +1,5 @@
 {	"name": "Yate",
-	"scopeName": "source.yate",
+	"scopeName": "yate.text",
 	"fileTypes": ["yate"],
 	"patterns": [
 		{ "include": "#block-comments"}
@@ -32,7 +32,7 @@
 			]
 		},
 		"match": {
-			"name": "source.yate.match",
+			"name": "yate.text.match",
 			"begin": "^(?:\\s|\\t)*(match)",
 			"beginCaptures": {
 				"1": { "name": "storage.type" }
@@ -62,7 +62,7 @@
 			"match": "\\b(include|import|module|external)\\b"
 		},
 		"func": {
-			"name": "source.yate.func",
+			"name": "yate.text.func",
 			"begin": "^(?:\\s|\t)*(func|key)(?:\t|\\s)",
 			"beginCaptures": {
 				"1": { "name": "storage.type" }
@@ -73,7 +73,7 @@
 			]
 		},
 		"func-definition": {
-			"name": "source.yate.func.def",
+			"name": "yate.text.func.def",
 			"begin": "(?:([a-zA-Z_$][a-zA-Z_$-0-9]*))(\\s|\\t)*\\(",
 			"beginCaptures": {
 				"1": { "name": "entity.name.function.js" }
@@ -100,7 +100,7 @@
 			]
 		},
 		"html-definition": {
-			"name": "source.yate.html.tag",
+			"name": "yate.text.html.tag",
 			"begin": "(</?)\\s*([-_a-zA-Z0-9]+)",
 			"end": "(/?>)",
 			"beginCaptures": {
@@ -114,7 +114,7 @@
 			]
 		},
 		"html-attributes": {
-			"name": "source.yate.html.tag.attribute",
+			"name": "yate.text.html.tag.attribute",
 			"begin": "(?= )",
 			"end": "(?=((>|/>)))",
 			"patterns": [
@@ -128,7 +128,7 @@
 			]
 		},
 		"yate-strings": {
-			"name": "source.yate.string",
+			"name": "yate.text.string",
 			"begin": "(\")",
 			"end": "(\\1)",
 			"beginCaptures": { "1": { "name": "string"} },
@@ -140,7 +140,7 @@
 			]
 		},
 		"yate-strings-single-quoted": {
-			"name": "source.yate.string",
+			"name": "yate.text.string",
 			"begin": "(')",
 			"end": "(\\1)",
 			"beginCaptures": { "1": { "name": "string"} },
@@ -152,7 +152,7 @@
 			]
 		},
 		"yate-inline-strings": {
-			"name": "source.yate.inline-string",
+			"name": "yate.text.inline-string",
 			"begin": "(?<=>)(?!\\<|$)",
 			"end": "(?=\\<|$)",
 			"patterns": [
@@ -168,7 +168,7 @@
 			"name": "entity.other.attribute-name.html"
 		},
 		"inline-expression": {
-			"name": "source.yate.inline-expression",
+			"name": "yate.text.inline-expression",
 			"begin": "(?<!\\{)({)(?!\\{)",
 			"end": "(?<!\\})(})(?!\\})",
 			"beginCaptures": { "0": { "name": "constant.numeric"} },

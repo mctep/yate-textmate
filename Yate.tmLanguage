@@ -134,7 +134,7 @@
 			<key>end</key>
 			<string>(?={)</string>
 			<key>name</key>
-			<string>source.yate.func</string>
+			<string>yate.text.func</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -158,7 +158,7 @@
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>source.yate.func.def</string>
+			<string>yate.text.func.def</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -228,7 +228,7 @@
 			<key>end</key>
 			<string>(?=((&gt;|/&gt;)))</string>
 			<key>name</key>
-			<string>source.yate.html.tag.attribute</string>
+			<string>yate.text.html.tag.attribute</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -278,7 +278,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>source.yate.html.tag</string>
+			<string>yate.text.html.tag</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -334,7 +334,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>source.yate.inline-expression</string>
+			<string>yate.text.inline-expression</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -392,7 +392,7 @@
 			<key>end</key>
 			<string>(?={)</string>
 			<key>name</key>
-			<string>source.yate.match</string>
+			<string>yate.text.match</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -464,7 +464,7 @@
 			<key>end</key>
 			<string>(?=\&lt;|$)</string>
 			<key>name</key>
-			<string>source.yate.inline-string</string>
+			<string>yate.text.inline-string</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -516,7 +516,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>source.yate.string</string>
+			<string>yate.text.string</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -560,7 +560,7 @@
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>source.yate.string</string>
+			<string>yate.text.string</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -583,7 +583,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.yate</string>
+	<string>yate.text</string>
 	<key>uuid</key>
 	<string>fa6fe8fe-4c7b-419a-9554-b0bc923cae37</string>
 </dict>
