@@ -115,7 +115,7 @@
 		},
 		"html-attributes": {
 			"name": "source.yate.html.tag.attribute",
-			"begin": "(?= )",
+			"begin": "(?=(\\s||\\t))",
 			"end": "(?=((>|/>)))",
 			"patterns": [
 				{ "include": "#block-comments"},
